@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  mysql:
+    image: redis
+    container_name: redis
+    hostname: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - app_net
+    entrypoint: redis-server --appendonly yes
+
+volumes:
+  redis_data:
+    name: redis_data
+
+networks:
+  app_net:
+    external: true

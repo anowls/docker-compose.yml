@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    hostname: rabbit
+    restart: always
+    ports:
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+    volumes: 
+      - rabbit_data:/var/lib/rabbitmq
+    networks:
+      - app_net
+
+volumes:
+  rabbit_data:
+    name: rabbit_data
+networks:
+  app_net:
+    external: true

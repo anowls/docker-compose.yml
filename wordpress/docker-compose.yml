@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    hostname: wordpress
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306 
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: Anowls@38
+      WORDPRESS_DB_DATABASE: wordpress
+    ports:
+      - "80:80"
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - app_net
+    external_links:
+      - mysql
+      
+volumes:
+  wordpress_data:
+    name: wordpress_data
+networks:
+  app_net:
+    external: true

@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  redmime:
+    image: redmine
+    container_name: redmine
+    hostname: redmine
+    restart: always
+    environment:
+      REDMINE_DB_MYSQL: mysql
+      REDMINE_DB_PORT: 3306
+      REDMINE_DB_USERNAME: root
+      REDMINE_DB_PASSWORD: Anowls@38
+      REDMINE_DB_DATABASE: redmine
+    ports:
+      - "3000:3000"
+    volumes: 
+      - redmine_data:/usr/src/redmine/files
+    networks:
+      - app_net
+    external_links:
+      - mysql
+
+volumes:
+  redmine_data: 
+    name: redmine_data
+networks:
+  app_net:
+    external: true
