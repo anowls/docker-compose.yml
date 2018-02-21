@@ -1,0 +1,63 @@
+version: '3.4'
+
+services:
+  hadoop-namenode:
+    image: uhopper/hadoop-namenode
+    hostname: namenode
+    container_name: namenode
+    domainname: hadoop
+    ports:
+      - '8020:8020'
+      - '50070:50070'
+    environment:
+      - HDFS_CONF_dfs_replication=3
+      - CLUSTER_NAME=anowls-hadoop
+    volumes:
+      - namenode_data:/hadoop/dfs/name
+  hadoop-datanode1:
+    image: uhopper/hadoop-datanode
+    hostname: datanode1
+    container_name: datanode1
+    domainname: hadoop
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode.hadoop:8020
+      - HDFS_CONF_dfs_replication=3
+      - CLUSTER_NAME=anowls-hadoop
+    volumes:
+      - datanode1_data:/hadoop/dfs/data
+  hadoop-datanode2:
+    image: uhopper/hadoop-datanode
+    hostname: datanode2
+    container_name: datanode2
+    domainname: hadoop
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode.hadoop:8020
+      - HDFS_CONF_dfs_replication=3
+      - CLUSTER_NAME=anowls-hadoop
+    volumes:
+      - datanode2_data:/hadoop/dfs/data
+  hadoop-datanode3:
+    image: uhopper/hadoop-datanode
+    hostname: datanode3
+    container_name: datanode3
+    domainname: hadoop
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode.hadoop:8020
+      - HDFS_CONF_dfs_replication=3
+      - CLUSTER_NAME=anowls-hadoop
+    volumes:
+      - datanode3_data:/hadoop/dfs/data
+    
+volumes:
+  namenode_data:
+    name: namenode_data
+  datanode1_data:
+    name: datanode1_data
+  datanode2_data:
+    name: datanode2_data
+  datanode3_data:
+    name: datanode3_data
+networks:
+  default:
+    external:
+      name: hadoop
