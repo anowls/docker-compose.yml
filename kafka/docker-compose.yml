@@ -13,7 +13,7 @@ services:
       KAFKA_CREATE_TOPICS: defaut_topic:1:1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
-      - kafka_data:/kafka
+      - e:/docker_volumes/kafka_data:/kafka
     networks:
       - app_net
     external_links:
@@ -32,9 +32,6 @@ services:
     external_links:
       - zookeeper
 
-volumes:
-  kafka_data:
-    name: kafka_data
 networks:
   app_net:
     external: true

@@ -11,13 +11,10 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - e:/docker_volumes/mysql_data:/var/lib/mysql
     networks:
       - app_net
 
-volumes:
-  mysql_data:
-    name: mysql_data
 networks:
   app_net:
     external: true

@@ -11,20 +11,14 @@ services:
       ZOO_INIT_LIMIT: 5
       ZOO_SYNC_LIMIT: 2
       ZOO_MAX_CLIENT_CNXNS: 60
-      ZOO_STANDLONE_ENABLED: false
     ports:
       - "2181:2181"
     volumes:
-      - zookeeper_data:/data
-      - zookeeper_log_data:/datalog
+      - e:/docker_volumes/zookeeper_data:/data
+      - e:/docker_volumes/zookeeper_log_data:/datalog
     networks:
       - app_net
 
-volumes:
-  zookeeper_data:
-    name: zookeeper_data
-  zookeeper_log_data:
-    name: zookeeper_log_data
 networks:
   app_net:
     external: true

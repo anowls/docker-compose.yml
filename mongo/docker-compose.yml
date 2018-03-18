@@ -9,16 +9,11 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongo_data:/data/db
-      - mongo_config_data:/data/configdb
+      - e:/docker_volumes/mongo_data:/data/db
+      - e:/docker_volumes/mongo_config_data:/data/configdb
     networks:
       - app_net
 
-volumes:
-  mongo_data:
-    name: mongo_data
-  mongo_config_data:
-    name: mongo_config_data
 networks:
   app_net:
     external: true
